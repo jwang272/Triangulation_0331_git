@@ -1,0 +1,160 @@
+library(roxygen2)
+bmp=data.matrix(read.csv('bmp.csv',header=FALSE))
+bmp=data.matrix(read.csv('bmp.csv',header=FALSE))
+Holes1_mymontreal=data.matrix(read.csv('Holes1_mymontreal.csv',header=FALSE))
+Holes2_mymontreal=data.matrix(read.csv('Holes2_mymontreal.csv',header=FALSE))
+bound_mymontreal=data.matrix(read.csv('P_mymontreal.csv',header=FALSE))
+mymontreal=list()
+mymontreal[[1]]<-bound_mymontreal
+mymontreal[[2]]<-Holes1_mymontreal
+mymontreal[[3]]<-Holes2_mymontreal
+names(mymontreal)<-c("bound",'H1','H2')
+BMP=list()
+BMP[[1]]<-bmp
+BMP[[2]]<-h1
+BMP[[3]]<-h2
+names(BMP)<-c("bound",'H1','H2')
+
+
+eg1pop_rho03=data.matrix(read.csv('eg2_rho03_pop.csv',header=TRUE))
+eg1pop_rho05=data.matrix(read.csv('eg2_rho05_pop.csv',header=TRUE))
+eg1pop_rho07=data.matrix(read.csv('eg2_rho07_pop.csv',header=TRUE))
+bb=data.matrix(read.csv('hs_r.csv',header = FALSE))
+### generalized ###
+eg1pop_bin_rho00=data.matrix(read.table('eg1_bin_rho00_pop_pi1_m4.txt',header=FALSE))
+eg1pop_poi_rho00=data.matrix(read.table('eg2_poi_rho00_pop_pi1_m4.txt',header=FALSE))
+eg1pop_nb_rho00=data.matrix(read.table('eg2_nb_rho00_pop_pi1_m4.txt',header=FALSE))
+#eg1pop_bin_rho00=data.matrix(read.table('eg1_bin_rho00_pop_pi1_m4.txt',header=FALSE))colnames(eg1pop_bin_rho00)=c("Y","m","x1","x2","z1","z2","z3")
+colnames(eg1pop_poi_rho00)=c("Y","m","x1","x2","z1","z2","z3")
+colnames(eg1pop_nb_rho00)=c("Y","m","x1","x2","z1","z2","z3")
+
+### ggam ####
+eg1pop_poi2=data.matrix(read.table('poi1000.txt'))
+eg1pop_nb2=data.matrix(read.table('nb1000.txt'))
+colnames(eg1pop_poi2)=c("Y","x1","x2","z1","z2","z3",'m1','m2','m3','m')
+colnames(eg1pop_nb2)=c("Y","x1","x2","z1","z2","z3",'m1','m2','m3','m')
+
+
+####
+
+eg2pop=data.matrix(read.csv('eg2_gaussian_pop.csv',header=TRUE))
+eg1_V1=data.matrix(read.csv('V.csv',header=F))
+eg1_V2=data.matrix(read.csv('V2.csv',header=F))
+eg1_V3=data.matrix(read.csv('V3.csv',header=F))
+eg1_T1=data.matrix(read.csv('T.csv',header=F))
+eg1_T2=data.matrix(read.csv('T2.csv',header=F))
+eg1_T3=data.matrix(read.csv('T3.csv',header=F))
+
+eg2_V20=data.matrix(read.csv('V20.csv',header=F))
+eg2_T20=data.matrix(read.csv('T20.csv',header=F))
+
+mort=data.matrix(read.csv('Mortality_LOG_VS_FA3.csv',header = TRUE))
+mort_V4=data.matrix(read.csv('V4.csv',header = FALSE))
+mort_T4=data.matrix(read.csv('T4.csv',header = FALSE))
+
+eg_poi=data.matrix(read.csv('data/sample_gam.csv',header = TRUE))
+eg_nb=data.matrix(read.csv('data/sample_gam_nb.csv',header = TRUE))
+eg_Tr=as.matrix(read.table('data/Tr1.txt',header=FALSE))
+eg_V=as.matrix(read.table('data/V1.txt',header=FALSE))
+
+save(bmp,file='BMP_bound.rda')
+save(Holes1_mymontreal,file='Holes1_mymontreal.rda')
+save(Holes2_mymontreal,file='Holes2_mymontreal.rda')
+save(bound_mymontreal,file='bound_mymontreal.rda')
+save(mymontreal,file='mymontreal.rda')
+save(BMP,file='BMP.rda')
+
+save(eg1pop_rho03,file='eg1pop_rho03.rda')
+save(eg2pop,file='eg2_gaussian_pop.rda')
+### generalized ###
+save(eg1pop_bin_rho00,file='eg1pop_bin_rho00.rda')
+save(eg1pop_poi_rho00,file='eg1pop_poi_rho00.rda')
+save(eg1pop_nb_rho00,file='eg1pop_nb_rho00.rda')
+
+###ggam ###
+
+save(eg1pop_poi2,file='eg1pop_poi2.rda')
+save(eg1pop_nb2,file='eg1pop_nb2.rda')
+save(bb,file='hs_r.rda')
+#####
+save(mort,file='mort.rda')
+save(mort_V4,file='mort_V4.rda')
+save(mort_T4,file='mort_T4.rda')
+save(eg_poi,file='eg_poi.rda')
+save(eg_nb,file='eg_nb.rda')
+
+
+eg_poi=list(sam_poi=eg_poi,V1=eg_V,T1=eg_Tr)
+eg_nb=list(sam_nb=eg_nb,V1=eg_V,T1=eg_Tr)
+
+save(eg1_V1,file='eg1_V1.rda')
+save(eg1_V2,file='eg1_V2.rda')
+save(eg1_V3,file='eg1_V3.rda')
+save(eg1_T1,file='eg1_T1.rda')
+save(eg1_T2,file='eg1_T2.rda')
+save(eg1_T3,file='eg1_T3.rda')
+save(eg2_V20,file='eg2_V20.rda')
+save(eg2_T20,file='eg2_T20.rda')
+
+devtools::use_data(bmp)
+
+devtools::use_data(eg1pop_rho03)
+devtools::use_data(eg1pop_rho05)
+devtools::use_data(eg1pop_rho07)
+
+devtools::use_data(eg2pop)
+devtools::use_data(mort)
+devtools::use_data(mort_V4)
+devtools::use_data(mort_T4)
+
+devtools::use_data(eg1_V1)
+devtools::use_data(eg1_V2)
+devtools::use_data(eg1_V3)
+devtools::use_data(eg1_T1)
+devtools::use_data(eg1_T2)
+devtools::use_data(eg1_T3)
+devtools::use_data(eg2_T20)
+devtools::use_data(eg2_V20)
+devtools::use_data(eg1pop_dat)
+devtools::use_data(eg2pop_dat)
+devtools::use_data(mort_dat)
+devtools::use_data(eg_poi)
+devtools::use_data(eg_nb)
+
+eg1pop_dat <- list()
+eg1pop_dat[[1]]<-eg1pop_rho03
+eg1pop_dat[[2]]<-eg1pop_rho05
+eg1pop_dat[[3]]<-eg1pop_rho07
+
+eg1pop_dat[[4]]<-eg1_V1
+eg1pop_dat[[5]]<-eg1_T1
+eg1pop_dat[[6]]<-eg1_V2
+eg1pop_dat[[7]]<-eg1_T2
+eg1pop_dat[[8]]<-eg1_V3
+eg1pop_dat[[9]]<-eg1_T3
+names(eg1pop_dat)<-c('rho03','rho05','rho07','V1','T1','V2','T2','V3','T3')
+
+save(eg1pop_rho03_dat,file='eg1pop_dat.rda')
+
+eg2pop_dat <- list()
+eg2pop_dat[[1]]<-eg2pop
+eg2pop_dat[[2]]<-eg2_V20
+eg2pop_dat[[3]]<-eg2_T20
+names(eg2pop_dat)<-c('pop','V20','T20')
+
+save(eg2pop_dat,file='eg2pop_dat.rda')
+
+mort_dat <-list()
+mort_dat[[1]]<-mort
+mort_dat[[2]]<-mort_V4
+mort_dat[[3]]<-mort_T4
+names(mort_dat)<-c('mort','V4','T4')
+
+save(mort_dat,file='mort_dat.rda')
+
+
+devtools::load_all()
+pack <- "ggam"
+path <- find.package(pack)
+system(paste(shQuote(file.path(R.home("bin"), "R")),"CMD", "Rd2pdf", shQuote(path)))
+devtools::check()
